@@ -1,0 +1,31 @@
+<h1>RETRO ISSUE MANAGER</h1>
+
+<div class="controls">
+  <%= link_to "NEW ISSUE", new_issue_path, class: "button" %>
+  
+  <%= form_tag issues_path, method: :get, class: "search-form" do %>
+    <%= text_field_tag :search, params[:search], placeholder: "SEARCH ISSUES...", class: "search-bar" %>
+  <% end %>
+
+  <div class="filter-buttons">
+    <%= link_to "ALL", issues_path, class: "button" %>
+    <%= link_to "TO DO", issues_path(status: "To Do"), class: "button" %>
+    <%= link_to "IN PROGRESS", issues_path(status: "In Progress"), class: "button" %>
+    <%= link_to "DONE", issues_path(status: "Done"), class: "button" %>
+  </div>
+
+</div>
+
+<div class="issues-list">
+  <% @issues.each do |issue| %>
+    <div class="issue-card">
+      <h3><%= issue.title %></h3>
+      <p><%= issue.description %></p>
+      <span class="status-badge"><%= issue.status %></span>
+      <div class="issue-actions">
+        <%= link_to "EDIT", edit_issue_path(issue), class: "button" %>
+        <%= button_to "DELETE", issue_path(issue), method: :delete, class: "button", data: { confirm: "ARE YOU SURE?" } %>
+      </div>
+    </div>
+  <% end %>
+</div>
