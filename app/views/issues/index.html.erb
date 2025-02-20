@@ -1,8 +1,8 @@
-<h1>RETRO ISSUE MANAGER</h1>
+<h1>OSTO - RETRO ISSUES</h1>
 
 <div class="controls">
   <%= link_to "NEW ISSUE", new_issue_path, class: "button" %>
-  
+
   <%= form_tag issues_path, method: :get, class: "search-form" do %>
     <%= text_field_tag :search, params[:search], placeholder: "SEARCH ISSUES...", class: "search-bar" %>
   <% end %>
