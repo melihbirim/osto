@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @issues = @project.issues
     @issues = @issues.where(status: params[:status]) if params[:status].present?
+    @issues = @issues.where("LOWER(title) LIKE LOWER(?)", "%#{params[:search]}%") if params[:search].present?
   rescue ActiveRecord::RecordNotFound
     render :not_found, status: :not_found
   end

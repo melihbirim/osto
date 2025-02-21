@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
   def index
     @issues = Issue.all
     @issues = @issues.where(status: params[:status]) if params[:status].present?
-    @issues = @issues.where("title ILIKE ?", "%#{params[:search]}%") if params[:search].present?
+    @issues = @issues.where("title LIKE ?", "%#{params[:search]}%") if params[:search].present?
   end
 
   def new

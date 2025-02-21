@@ -318,16 +318,24 @@ textarea.retro-input {
 
 @keyframes shoryuken {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) rotate(0deg);
     opacity: 1;
+    font-size: 24px;
   }
-  50% {
-    transform: translateY(-100px) rotate(10deg);
+  25% {
+    transform: translateY(-100px) rotate(-10deg);
+    opacity: 1;
+    font-size: 32px;
+  }
+  75% {
+    transform: translateY(-300px) rotate(10deg);
     opacity: 0.7;
+    font-size: 40px;
   }
   100% {
-    transform: translateY(-200px) rotate(20deg);
+    transform: translateY(-500px) rotate(20deg);
     opacity: 0;
+    font-size: 48px;
   }
 }
 
@@ -335,16 +343,17 @@ textarea.retro-input {
   position: fixed;
   font-size: 24px;
   color: #ff0000;
-  text-shadow: 2px 2px 0 #000;
+  text-shadow: 3px 3px 0 #000;
   transform: translateY(0);
-  opacity: 0;
   z-index: 1000;
   pointer-events: none;
-  animation: shoryuken 4s ease-out forwards;
+  animation-name: shoryuken;
+  animation-duration: 4s;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  animation-fill-mode: forwards;
 }
 
 .shoryuken-text.active {
-  transform: translateY(-150px);
   opacity: 1;
 }
 

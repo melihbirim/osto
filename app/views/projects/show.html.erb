@@ -7,7 +7,7 @@
 <div class="controls">
   <%= link_to "NEW ISSUE", new_issue_path(project_id: @project.id), class: "button" %>
 
-  <%= form_tag issues_path, method: :get, class: "search-form" do %>
+  <%= form_tag project_path(@project), method: :get, class: "search-form" do %>
     <%= text_field_tag :search, params[:search], placeholder: "SEARCH ISSUES...", class: "search-bar" %>
   <% end %>
 
