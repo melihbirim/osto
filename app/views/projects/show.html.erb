@@ -1,15 +1,30 @@
-<h1><%= @project.title %></h1>
+<div data-controller="shortcuts">
+  <%= link_to projects_path, class: "button back-button", data: { shortcut: "b" } do %>BACK TO PROJECT (B)<% end %>
 
-<div class="project-details">
-  <p><%= @project.description %></p>
-</div>
+  <h1><%= @project.title %></h1>
 
-<div class="controls">
-  <%= link_to "NEW ISSUE", new_issue_path(project_id: @project.id), class: "button" %>
+  <div class="project-details">
+    <p><%= @project.description %></p>
+  </div>
 
-  <%= form_tag project_path(@project), method: :get, class: "search-form" do %>
-    <%= text_field_tag :search, params[:search], placeholder: "SEARCH ISSUES...", class: "search-bar" %>
-  <% end %>
+  <div class="controls">
+    <%= link_to "NEW ISSUE (N)", new_issue_path(project_id: @project.id), class: "button", data: { shortcut: "n" } %>
+
+  <%= form_tag project_path(@project), method: :get, class: "search-form", 
+        data: { 
+          controller: "search", 
+          search_target: "form",
+          turbo_frame: "issues_list"
+        } do %>
+      <%= text_field_tag :search, params[:search], 
+      placeholder: "SEARCH ISSUES (S, ESC to clear)...", 
+          class: "search-bar",
+          data: { 
+            action: "input->search#search",
+            search_target: "input",
+            shortcut: "s"
+          } %>
+    <% end %>
 
   <div class="filter-buttons">
     <%= link_to "ALL", project_path(@project), class: "button" %>
@@ -20,8 +35,10 @@
 
 </div>
 
-<div class="issues-list">
-  <% @issues.each do |issue| %>
-    <%= render partial: "issue", locals: { issue: issue } %>
-  <% end %>
-</div>
+<%= turbo_frame_tag "issues_list" do %>
+  <div class="issues-list">
+    <% @issues.each do |issue| %>
+      <%= render partial: "issue", locals: { issue: issue } %>
+    <% end %>
+  </div>
+<% end %>

@@ -27,6 +27,8 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render :not_found, status: :not_found
   end
 
   def update

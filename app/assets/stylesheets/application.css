@@ -258,19 +258,20 @@ h1 {
   padding: 10px;
   font-family: 'Press Start 2P', cursive;
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   margin-bottom: 20px;
-  .back-button {
-    margin-bottom: 20px;
-    display: inline-block;
-  }
-  
-  .back-button:before {
-    content: '←';
-    margin-right: 8px;
-  }
 }
-/* Add these styles to your existing CSS */
+.back-button {
+  width: 300px;
+  text-align: left;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.back-button::before {
+  content: "←";
+  margin-right: 10px;
+}
 
 .retro-form {
   max-width: 600px;

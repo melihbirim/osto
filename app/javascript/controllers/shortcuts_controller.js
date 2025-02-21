@@ -1,48 +1,34 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["search"]
-
   connect() {
-    document.addEventListener("keydown", this.handleShortcut.bind(this))
+    this.handleKeyPress = this.handleKeyPress.bind(this)
+    document.addEventListener("keydown", this.handleKeyPress)
   }
 
   disconnect() {
-    document.removeEventListener("keydown", this.handleShortcut.bind(this))
+    document.removeEventListener("keydown", this.handleKeyPress)
   }
 
-  handleShortcut(event) {
-    // CMD+K handler
-    if (event.metaKey && event.key === "k") {
-      event.preventDefault()
-      this.searchTarget.focus()
+  handleKeyPress(event) {
+    // Ignore if user is typing in an input
+    if (event.target.tagName === "INPUT" || event.target.tagName === "TEXTAREA") {
+      return
     }
-
-    // Filter shortcuts (only when search is focused)
-    if (document.activeElement === this.searchTarget) {
-      switch (event.key.toLowerCase()) {
-        case "f":
-          event.preventDefault()
-          this.searchTarget.value = ""
-          break
-        case "a":
-          event.preventDefault()
-          this.searchTarget.value = "all"
-          break
-        case "t":
-          event.preventDefault()
-          this.searchTarget.value = "todo"
-          break
-        case "i":
-          event.preventDefault()
-          this.searchTarget.value = "in progress"
-          break
-        case "d":
-          event.preventDefault()
-          this.searchTarget.value = "done"
-          break
-      }
-      this.searchTarget.dispatchEvent(new Event("input"))
+  
+    const key = event.key.toLowerCase()
+  
+    if (key === 's') {
+      event.preventDefault()
+      this.element.querySelector('.search-bar').focus()
+      return
+    }
+  
+    // Find element with matching shortcut
+    const element = this.element.querySelector(`[data-shortcut="${key}"]`)
+    if (element) {
+      event.preventDefault()
+      element.click()
     }
   }
 }
