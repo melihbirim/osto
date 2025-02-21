@@ -1,7 +1,6 @@
 <div data-controller="shortcuts">
-  <%= link_to projects_path, class: "button back-button", data: { shortcut: "b" } do %>BACK TO PROJECT (B)<% end %>
-
-  <h1><%= @project.title %></h1>
+  
+  <h3><%= @project.title %></h3>
 
   <div class="project-details">
     <p><%= @project.description %></p>
@@ -27,10 +26,21 @@
     <% end %>
 
   <div class="filter-buttons">
-    <%= link_to "ALL", project_path(@project), class: "button" %>
-    <%= link_to "TO DO", project_path(@project, status: :todo), class: "button" %>
-    <%= link_to "IN PROGRESS", project_path(@project, status: :in_progress), class: "button" %>
-    <%= link_to "DONE", project_path(@project, status: :done), class: "button" %>
+    <%= link_to "ALL (#{@issues.count})", 
+        project_path(@project), 
+        class: "button #{params[:status].blank? ? 'active' : ''}" %>
+    
+    <%= link_to "TO DO (#{@issues.todo.count})", 
+        project_path(@project, status: :todo), 
+        class: "button #{params[:status] == 'todo' ? 'active' : ''}" %>
+    
+    <%= link_to "IN PROGRESS (#{@issues.in_progress.count})", 
+        project_path(@project, status: :in_progress), 
+        class: "button #{params[:status] == 'in_progress' ? 'active' : ''}" %>
+    
+    <%= link_to "DONE (#{@issues.done.count})", 
+        project_path(@project, status: :done), 
+        class: "button #{params[:status] == 'done' ? 'active' : ''}" %>
   </div>
 
 </div>

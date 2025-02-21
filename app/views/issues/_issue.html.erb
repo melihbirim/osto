@@ -19,7 +19,9 @@
           data: { controller: "shoryuken" } %>
     <% end %>
     
-    <%= link_to "EDIT", edit_issue_path(issue), class: "button" %>
-    <%= button_to "DELETE", issue_path(issue), method: :delete, class: "button" %>
+    <div class="issue-actions">
+      <%= link_to "EDIT", edit_issue_path(issue), class: "button" %>
+      <%= button_to "DELETE", issue_path(issue), method: :delete, class: "button" %>
+    </div>
   </div>
 </div>

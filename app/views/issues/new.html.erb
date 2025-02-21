@@ -1,22 +1,41 @@
-<h1>NEW ISSUE</h1>
+<div data-controller="form-shortcuts form-validation">
+  <h3>NEW ISSUE</h3>
 
-<%= form_with(model: @issue, local: true, class: "retro-form") do |f| %>
-  <%= f.hidden_field :project_id, value: params[:project_id] %>
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: "retro-input" %>
-  </div>
+  <%= form_with(model: @issue, local: true, class: "retro-form", data: { form_shortcuts_target: "form" }, html: { novalidate: true }) do |f| %>
+    <%= f.hidden_field :project_id, value: params[:project_id] %>
+    <div class="form-group">
+      <%= f.label :title do %>
+        TITLE <span class="required">*</span>
+      <% end %>
+      <%= f.text_field :title, class: "retro-input", 
+          data: { 
+            form_validation_target: "title",
+            action: "input->form-validation#removeError"
+          },
+          autofocus: true,
+          required: true,
+          novalidate: true %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_area :description, class: "retro-input" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :description do %>
+        DESCRIPTION <span class="required">*</span>
+      <% end %>
+      <%= f.text_area :description, class: "retro-input",
+          data: { 
+            form_validation_target: "description",
+            action: "input->form-validation#removeError"
+          },
+          required: true,
+          novalidate: true %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :status %>
-    <%= f.select :status, [['To Do', 'todo'], ['In Progress', 'in_progress'], ['Done', 'done']], {}, class: "retro-select" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :status %>
+      <%= f.select :status, [['To Do', 'todo'], ['In Progress', 'in_progress'], ['Done', 'done']], {}, class: "retro-select" %>
+    </div>
 
-  <%= f.submit "CREATE ISSUE", class: "button" %>
-  <%= link_to "CANCEL", project_path(params[:project_id]), class: "button" %>
-<% end %>
+    <%= f.submit "SAVE (S)", class: "button" %>
+    <%= link_to "CANCEL (C)", project_path(params[:project_id]), class: "button", data: { form_shortcuts_target: "cancel" } %>
+  <% end %>
+</div>
