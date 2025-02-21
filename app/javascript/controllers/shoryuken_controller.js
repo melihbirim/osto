@@ -1,28 +1,39 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  connect() {
-    this.element.addEventListener("click", this.showShoryuken.bind(this))
-    this.audio = new Audio("/assets/audio/shoryuken.mp3")
+  static values = {
+    audioPath: String
   }
 
-  showShoryuken(event) {
-    // Play sound
-    this.audio.currentTime = 0
-    this.audio.play().catch(error => console.error("Error playing sound:", error))
+  connect() {
+    this.element.addEventListener("click", this.playSound)
+  }
 
+  disconnect() {
+    this.element.removeEventListener("click", this.playSound)
+  }
+
+  playSound = () => {
+    const audio = new Audio(this.element.dataset.shoryukenAudioPath)
+    audio.play()
+    this.createText()
+  }
+
+  createText() {
     const text = document.createElement("div")
-    text.className = "shoryuken-text"
     text.textContent = "SHORYUKEN!"
-    text.style.left = `${event.clientX - 50}px`
-    text.style.top = `${event.clientY - 20}px`
+    text.className = "shoryuken-text active"
+    
+    // Position relative to the clicked button
+    const buttonRect = this.element.getBoundingClientRect()
+    text.style.position = "fixed"
+    text.style.left = `${buttonRect.left}px`
+    text.style.top = `${buttonRect.top}px`
+    
     document.body.appendChild(text)
-
-    requestAnimationFrame(() => {
-      text.classList.add("active")
-      setTimeout(() => {
-        text.remove()
-      }, 1500) // Increased timeout to match the CSS transition duration
+    
+    text.addEventListener("animationend", () => {
+      text.remove()
     })
   }
 }

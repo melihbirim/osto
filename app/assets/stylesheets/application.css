@@ -195,7 +195,7 @@ a:hover {
 
 h1 {
   margin-bottom: 30px;
-  text-shadow: 0 0 5px var(--text-color);
+  text-shadow: 0 0 1px var(--text-color);
   font-size: 2.5em;
   letter-spacing: 2px;
   color: #00ff00;
@@ -399,7 +399,7 @@ textarea.retro-input {
 .project-card h2 {
   margin: 0;
   color: var(--text-color);
-  text-shadow: 0 0 5px var(--text-color);
+  text-shadow: 0 0 1px var(--text-color);
 }
 
 .project-card .issue-count {
@@ -418,4 +418,92 @@ textarea.retro-input {
   flex: 1;
   min-width: 80px;
   max-width: 120px;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px dashed var(--text-color);
+  margin-bottom: 30px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.nav-brand a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 2.5em;
+  text-shadow: 0 0 5px var(--text-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 2px solid var(--button-border);
+  background: var(--button-bg);
+}
+
+.nav-link:hover {
+  background: var(--button-border);
+  text-shadow: 0 0 10px var(--text-color);
+}
+
+.required {
+  color: var(--error-color);
+  margin-left: 5px;
+}
+
+.retro-input.error {
+  border: 2px solid var(--error-color);
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Remove default browser validation tooltip */
+input:invalid {
+  box-shadow: none;
+}
+input:invalid:required {
+  box-shadow: none;
+}
+.breadcrumb {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  color: var(--text-color);
+}
+
+.breadcrumb-link {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.breadcrumb-link:hover {
+  text-shadow: 0 0 10px var(--text-color);
+}
+
+:not(output):-moz-ui-invalid {
+  box-shadow: none;
+}
+
+:not(output):-moz-ui-invalid:-moz-focusring {
+  box-shadow: none;
+}
+
+:-moz-submit-invalid {
+  box-shadow: none;
+}
+
+:-moz-ui-invalid {
+  box-shadow: none;
 }

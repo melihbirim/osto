@@ -69,6 +69,36 @@ The application is built with:
 4. Push to the branch ( git push origin feature/amazing-feature )
 5. Open a Pull Request
 
+## Planned Features
+1. Keyboard Navigation:
+- 'J' and 'K' keys to move between issues
+- 'F' to toggle filters
+- '/' to focus search
+- 'ESC' to clear search/close modals
+2. Issue Enhancements:
+- Priority levels (High, Medium, Low)
+- Due dates with countdown
+- Labels/Tags system
+- Comments section
+- Issue history/activity log
+- Attachments support
+3. Visual Improvements:
+- Different color themes (like Matrix green, Cyberpunk yellow, etc.)
+- Progress bar for project completion
+- Custom animations for different status changes
+- Mini-game animation when completing all issues
+4. Project Features:
+- Project statistics and charts
+- Sprint/milestone planning
+- Time tracking
+- Team member assignments
+- Project templates
+5. Collaboration:
+- @mentions in descriptions
+- Share issues via link
+- Export issues to CSV/PDF
+- Email notifications
+
 ## License
 This project is licensed under the MIT License - see the LICENSE.md file for details.
 

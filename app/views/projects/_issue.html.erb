@@ -1,7 +1,7 @@
 <div class="issue-card">
   <h3><%= issue.title %></h3>
   <p><%= issue.description %></p>
-  <span class="status-badge"><%= issue.status  %></span>
+  <span class="status-badge"><%= issue.status.upcase %></span>
   
   <div class="issue-actions">
     <% if issue.todo? %>
@@ -16,10 +16,13 @@
           method: :patch,
           params: { issue: { status: :done }},
           class: "button button-finish",
-          data: { controller: "shoryuken" } %>
+          data: { 
+            controller: "shoryuken",
+            shoryuken_audio_path: asset_path('shoryuken.mp3')
+          } %>
     <% end %>
     
-    <%= link_to "EDIT", edit_issue_path(issue), class: "button" %>
+    <%= link_to "EDIT", edit_issue_path(issue), class: "button", data: { turbo_frame: "_top" }  %>
     <%= button_to "DELETE", issue_path(issue), method: :delete, class: "button" %>
   </div>
 </div>
