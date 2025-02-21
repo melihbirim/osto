@@ -1,6 +1,7 @@
 <h1>EDIT ISSUE</h1>
 
 <%= form_with(model: @issue, local: true, class: "retro-form") do |f| %>
+  <%= f.hidden_field :project_id, value: @issue.project_id %>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: "retro-input" %>
@@ -13,9 +14,9 @@
 
   <div class="form-group">
     <%= f.label :status %>
-    <%= f.select :status, ['To Do', 'In Progress', 'Done'], {}, class: "retro-select" %>
+    <%= f.select :status, [['To Do', 'todo'], ['In Progress', 'in_progress'], ['Done', 'done']], {}, class: "retro-select" %>
   </div>
 
   <%= f.submit "UPDATE ISSUE", class: "button" %>
-  <%= link_to "CANCEL", issues_path, class: "button" %>
+  <%= link_to "CANCEL", project_path(@issue.project), class: "button" %>
 <% end %>

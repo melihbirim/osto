@@ -1,0 +1,27 @@
+<h1><%= @project.title %></h1>
+
+<div class="project-details">
+  <p><%= @project.description %></p>
+</div>
+
+<div class="controls">
+  <%= link_to "NEW ISSUE", new_issue_path(project_id: @project.id), class: "button" %>
+
+  <%= form_tag issues_path, method: :get, class: "search-form" do %>
+    <%= text_field_tag :search, params[:search], placeholder: "SEARCH ISSUES...", class: "search-bar" %>
+  <% end %>
+
+  <div class="filter-buttons">
+    <%= link_to "ALL", project_path(@project), class: "button" %>
+    <%= link_to "TO DO", project_path(@project, status: :todo), class: "button" %>
+    <%= link_to "IN PROGRESS", project_path(@project, status: :in_progress), class: "button" %>
+    <%= link_to "DONE", project_path(@project, status: :done), class: "button" %>
+  </div>
+
+</div>
+
+<div class="issues-list">
+  <% @issues.each do |issue| %>
+    <%= render partial: "issue", locals: { issue: issue } %>
+  <% end %>
+</div>

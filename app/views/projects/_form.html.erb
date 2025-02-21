@@ -1,0 +1,20 @@
+<div class="retro-form">
+  <%= form_with(model: project, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "retro-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: "retro-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :status %>
+      <%= form.select :status, Project.statuses.keys.map { |s| [s.titleize, s] }, {}, class: "retro-select" %>
+    </div>
+
+    <%= form.submit class: "button button-start" %>
+  <% end %>
+</div>

@@ -1,0 +1,25 @@
+<div class="issue-card">
+  <h3><%= issue.title %></h3>
+  <p><%= issue.description %></p>
+  <span class="status-badge"><%= issue.status.titleize %></span>
+  
+  <div class="issue-actions">
+    <% if issue.todo? %>
+      <%= button_to "START", issue_path(issue),
+          method: :patch,
+          params: { issue: { status: :in_progress }},
+          class: "button button-start" %>
+    <% end %>
+    
+    <% if issue.in_progress? %>
+      <%= button_to "FINISH", issue_path(issue),
+          method: :patch,
+          params: { issue: { status: :done }},
+          class: "button button-finish",
+          data: { controller: "shoryuken" } %>
+    <% end %>
+    
+    <%= link_to "EDIT", edit_issue_path(issue), class: "button" %>
+    <%= button_to "DELETE", issue_path(issue), method: :delete, class: "button" %>
+  </div>
+</div>

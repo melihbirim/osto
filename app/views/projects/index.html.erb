@@ -1,0 +1,22 @@
+<div class="controls">
+  <h1>OSTO - PROJECTS</h1>
+  <%= link_to "NEW PROJECT", new_project_path, class: "button button-start" %>
+</div>
+
+<div class="project-grid">
+  <% @projects.each do |project| %>
+    <div class="project-card">
+      <h2><%= project.title %></h2>
+      <p><%= project.description %></p>
+      <div class="status-badge"><%= project.status.upcase %></div>
+      <div class="issue-count">
+        <%= pluralize(project.issues.count, 'issue') %>
+      </div>
+      <div class="project-actions">
+        <%= link_to "VIEW", project_path(project), class: "button" %>
+        <%= link_to "EDIT", edit_project_path(project), class: "button" %>
+        <%= button_to "DELETE", project_path(project), method: :delete, class: "button", data: { confirm: "Are you sure?" } %>
+      </div>
+    </div>
+  <% end %>
+</div>
