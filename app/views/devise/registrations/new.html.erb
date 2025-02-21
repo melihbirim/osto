@@ -1,0 +1,38 @@
+<div class="auth-container">
+  <h1>SIGN UP</h1>
+
+  <div class="retro-form">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, class: "retro-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autocomplete: "email", class: "retro-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "retro-input" %>
+        <% if @minimum_password_length %>
+          <small class="hint-text">(<%= @minimum_password_length %> characters minimum)</small>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "retro-input" %>
+      </div>
+
+      <%= f.submit "SIGN UP", class: "button button-start" %>
+    <% end %>
+
+    <div class="devise-links">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

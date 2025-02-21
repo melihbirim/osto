@@ -1,0 +1,13 @@
+<% if resource.errors.any? %>
+  <div class="error-messages">
+    <h2 class="error-title">
+      <%= pluralize(resource.errors.count, "error") %> prevented this <%= resource.class.name.downcase %> from being saved:
+    </h2>
+
+    <ul class="error-list">
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<nav class="navbar">
+  <div class="nav-brand">
+    <%= link_to "OSTO", root_path %>
+  </div>
+  
+  <% if user_signed_in? %>
+    <div class="nav-user">
+      <span class="user-name"><%= current_user.name || current_user.email %></span>
+      <%= button_to "LOGOUT", destroy_user_session_path, method: :delete, class: "button" %>
+    </div>
+  <% end %>
+</nav>

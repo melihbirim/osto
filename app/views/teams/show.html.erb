@@ -1,0 +1,16 @@
+<div data-controller="shortcuts">
+  <%= link_to teams_path, class: "button back-button", data: { shortcut: "b" } do %>
+    BACK TO TEAMS (B)
+  <% end %>
+
+  <h1><%= @team.name %></h1>
+  <p><%= @team.description %></p>
+
+  <div class="controls">
+    <%= link_to "NEW PROJECT (N)", new_project_path(team_id: @team.id), class: "button button-start", data: { shortcut: "n" } %>
+  </div>
+
+  <div class="project-grid">
+    <%= render @projects %>
+  </div>
+</div>

@@ -419,3 +419,127 @@ textarea.retro-input {
   min-width: 80px;
   max-width: 120px;
 }
+.auth-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.auth-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.devise-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.devise-links a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.devise-links a:hover {
+  text-decoration: underline;
+}
+.error-messages {
+  border: 2px dashed var(--error-color);
+  padding: 15px;
+  margin-bottom: 20px;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.error-title {
+  color: var(--error-color);
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.error-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.error-list li {
+  color: var(--error-color);
+  font-size: 0.8em;
+  margin-bottom: 5px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px dashed var(--text-color);
+  margin-bottom: 30px;
+}
+
+.nav-brand a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.5em;
+  text-shadow: 0 0 5px var(--text-color);
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-name {
+  color: var(--text-color);
+  font-size: 0.8em;
+}
+.flash {
+  padding: 15px;
+  margin: 20px;
+  border: 2px dashed;
+  text-align: center;
+  animation: fadeOut 5s forwards;
+}
+
+.flash.notice {
+  border-color: var(--text-color);
+  background: rgba(0, 255, 0, 0.1);
+}
+
+.flash.alert {
+  border-color: var(--error-color);
+  background: rgba(255, 0, 0, 0.1);
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.container {
+  padding: 0 20px;
+}
+.loading-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-indicator.active {
+  display: flex;
+}
+
+.loading-text {
+  color: var(--text-color);
+  font-size: 24px;
+  animation: blink 1s infinite;
+}

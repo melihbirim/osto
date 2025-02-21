@@ -1,0 +1,20 @@
+<div class="auth-container">
+  <h1>RESET PASSWORD</h1>
+
+  <div class="retro-form">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "retro-input" %>
+      </div>
+
+      <%= f.submit "SEND RESET INSTRUCTIONS", class: "button button-start" %>
+    <% end %>
+
+    <div class="devise-links">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

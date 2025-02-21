@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>OSTO - Retro Issue Manager</title>
+    <title><%= content_for?(:title) ? yield(:title) + " | OSTO" : "OSTO - Retro Issue Tracker" %></title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="OSTO - A retro-styled issue tracking system">
+    <meta name="theme-color" content="#1b1b1b">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="OSTO">
+    <meta property="og:description" content="A retro-styled issue tracking system">
+    <meta property="og:type" content="website">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= stylesheet_link_tag "application" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'shared/loading' %>
+    <%= render 'shared/navbar' unless controller_name == 'sessions' || controller_name == 'registrations' %>
+    
+    <% if notice %>
+      <div class="flash notice">
+        <%= notice %>
+      </div>
+    <% end %>
+    
+    <% if alert %>
+      <div class="flash alert">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

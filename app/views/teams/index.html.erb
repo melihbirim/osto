@@ -1,0 +1,25 @@
+<div data-controller="shortcuts">
+  <h1>OSTO</h1>
+  <h2>TEAMS</h2>
+
+  <div class="controls">
+    <%= link_to "NEW TEAM (N)", new_team_path, class: "button button-start", data: { shortcut: "n" } %>
+  </div>
+
+  <div class="project-grid">
+    <% @teams.each do |team| %>
+      <div class="project-card">
+        <h2><%= team.name %></h2>
+        <p><%= team.description %></p>
+        <div class="issue-count">
+          <%= pluralize(team.projects.count, 'project') %>
+        </div>
+        <div class="project-actions">
+          <%= link_to "VIEW", team_path(team), class: "button" %>
+          <%= link_to "EDIT", edit_team_path(team), class: "button" %>
+          <%= button_to "DELETE", team_path(team), method: :delete, class: "button", data: { confirm: "Are you sure?" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

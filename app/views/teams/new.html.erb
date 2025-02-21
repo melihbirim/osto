@@ -1,0 +1,23 @@
+<div data-controller="shortcuts">
+  <%= link_to teams_path, class: "button back-button", data: { shortcut: "b" } do %>
+    BACK TO TEAMS (B)
+  <% end %>
+
+  <h1>NEW TEAM</h1>
+
+  <div class="retro-form">
+    <%= form_with(model: @team, local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "retro-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "retro-input" %>
+      </div>
+
+      <%= f.submit "CREATE TEAM", class: "button button-start" %>
+    <% end %>
+  </div>
+</div>
